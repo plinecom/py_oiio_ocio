@@ -4,14 +4,13 @@ import os
 
 if __name__ == '__main__':
 
-    # 対象のディレクトリを指定
-
     for path in glob.glob('C:/EXR/ACES2065_1/*.exr'):
-        new_folder = os.path.dirname(path) + '/ACEScg'
-        os.makedirs(new_folder, exist_ok=True)
-        new_path = new_folder +'/'+ os.path.basename(path)
 
-        print(new_path)
+        output_folder = os.path.join(os.path.dirname(path) , 'ACEScg')
+        os.makedirs(output_folder, exist_ok=True)
+        output_path = os.path.join(output_folder, os.path.basename(path))
+
+        print(output_path)
 
         #Read File
         buf = oiio.ImageBuf(path)
@@ -21,4 +20,4 @@ if __name__ == '__main__':
                                       colorconfig='studio-config-v2.2.0_aces-v1.3_ocio-v2.4.ocio')
 
         #Write File
-        dst.write(new_path)
+        dst.write(output_path)
