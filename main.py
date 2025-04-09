@@ -14,11 +14,11 @@ if __name__ == '__main__':
         print(new_path)
 
         #Read File
-        buf = oiio.ImageBuf(str(path))
+        buf = oiio.ImageBuf(path)
 
         #Convert ColorSpace
         dst = oiio.ImageBufAlgo.colorconvert( buf, "ACES2065-1", "ACEScg",
                                       colorconfig='studio-config-v2.2.0_aces-v1.3_ocio-v2.4.ocio')
 
         #Write File
-        dst.write(str(new_path))
+        dst.write(new_path)
